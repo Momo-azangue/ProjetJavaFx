@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca8aaaee-c72a-4cfd-91a0-d34d6c9b5341" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/projetvisionneusehtml/EditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/projetvisionneusehtml/EditorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/projetvisionneusehtml/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/projetvisionneusehtml/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/projetvisionneusehtml/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/projetvisionneusehtml/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/projetvisionneusehtml/MenuController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/etu/ecole/ensicaen/projetvisionneusehtml/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/etu/ecole/ensicaen/projetvisionneusehtml/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +102,7 @@
       <workItem from="1731619047341" duration="2591000" />
       <workItem from="1731664779276" duration="2847000" />
       <workItem from="1731686340415" duration="1045000" />
-      <workItem from="1731793195257" duration="6210000" />
+      <workItem from="1731793195257" duration="20566000" />
     </task>
     <servers />
   </component>

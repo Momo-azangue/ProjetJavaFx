@@ -25,20 +25,20 @@
         <menus>
           <Menu mnemonicParsing="false" text="Fichier">
             <items>
-              <MenuItem mnemonicParsing="false" text="Nouveau">
+              <MenuItem  mnemonicParsing="false" text="Nouveau">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Ouvrir">
+                  <MenuItem onAction="#handleOpenFile" mnemonicParsing="false" text="Ouvrir">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="Enregistrer" mnemonicParsing="false" text="Enregistrer">
+                  <MenuItem fx:id="Enregistrer"  onAction="#handleSave" mnemonicParsing="false" text="Enregistrer">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-                  <MenuItem fx:id="Enregistrersous" mnemonicParsing="false" text="Enregistrer sous">
+                  <MenuItem fx:id="Enregistrersous" onAction="#handleSaveAs" mnemonicParsing="false" text="Enregistrer sous">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
@@ -93,7 +93,7 @@
          <children>
             <ButtonBar buttonMinWidth="31.0" prefHeight="121.0" prefWidth="200.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Button">
+                <Button onAction="#handleOpenFile" mnemonicParsing="false" text="Button">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" translateX="-2.0">
                            <image>
@@ -101,7 +101,7 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button  fx:id="Savebtn" layoutX="135.0" layoutY="14.0" mnemonicParsing="false" text="Button">
+                  <Button  fx:id="Savebtn" onAction="#handleSave" layoutX="135.0" layoutY="14.0" mnemonicParsing="false" text="Button">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" translateX="-2.0">
                            <image>
@@ -109,7 +109,7 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="Saveasbtn" layoutX="135.0" layoutY="14.0" mnemonicParsing="false" text="Button">
+                  <Button fx:id="Saveasbtn"  onAction="#handleSaveAs"  layoutX="135.0" layoutY="14.0" mnemonicParsing="false" text="Button">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" translateX="-2.0">
                            <image>
