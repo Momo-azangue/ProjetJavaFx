@@ -56,24 +56,24 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edition">
             <items>
-              <MenuItem mnemonicParsing="false" text="Undo">
+              <MenuItem onAction="#handleUndo" mnemonicParsing="false" text="Undo">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Redo">
+                  <MenuItem onAction="#handleRedo" mnemonicParsing="false" text="Redo">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="Y" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Copier">
+                  <MenuItem fx:id="copy" onAction="#handlecopy" mnemonicParsing="false" text="Copier">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Couper">
+                  <MenuItem fx:id="cut" onAction="#handlecut" mnemonicParsing="false" text="Couper">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Coller">
+                  <MenuItem fx:id="paste" onAction="#handlepaste" mnemonicParsing="false" text="Coller">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
@@ -117,7 +117,7 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button  fx:id="Undobtn" layoutX="200.0" layoutY="14.0" mnemonicParsing="false" text="Button">
+                  <Button  fx:id="Undobtn" onAction="#handleUndo" layoutX="200.0" layoutY="14.0" mnemonicParsing="false" text="Button">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" translateX="-2.0">
                            <image>
@@ -125,7 +125,7 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="Redobtn" layoutX="285.0" layoutY="14.0" mnemonicParsing="false" text="Button">
+                  <Button fx:id="Redobtn" onAction="#handleRedo" layoutX="285.0" layoutY="14.0" mnemonicParsing="false" text="Button">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                            <image>

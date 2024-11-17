@@ -15,41 +15,45 @@ public class EditorController {
 
     @FXML
     private TabPane tabPane; // réfrence au Tabpane dans le fichier FXML
-
     @FXML
     private TextArea textArea;
-
     @FXML
     private WebView webView;
-
     @FXML
     private Tab tab;
-
     @FXML
     private MenuItem Enregistrer;
-
     @FXML
     private MenuItem Enregistrersous;
+    @FXML
+    private MenuItem undo;
+    @FXML
+    private MenuItem redo;
+    @FXML
+    private MenuItem copy;
+    @FXML
+    private MenuItem paste;
+    @FXML
+    private MenuItem cut;
+
 
     @FXML
     private Button Savebtn;
-
     @FXML
     private Button Saveasbtn;
-
     @FXML
     private Button Undobtn;
-
     @FXML
     private Button Redobtn;
 
     @FXML
     private Label caracteres;
-
     @FXML
     private Label lignes;
 
     private Boolean EncoursdeRedaction = false;
+
+
     @FXML
     public void initialize() {
 
@@ -313,6 +317,29 @@ public class EditorController {
 
     }
 
+    @FXML
+    private void handlecopy(){
+        textArea.copy();
+    }
+    @FXML
+    private void handlecut(){
+
+        textArea.cut();
+    }
+    @FXML
+    private void handlepaste(){
+        textArea.paste();
+    }
+
+    @FXML
+    private void handleUndo(){
+        textArea.undo();
+    }
+
+    @FXML
+    private void handleRedo(){
+        textArea.redo();
+    }
 
 
 
