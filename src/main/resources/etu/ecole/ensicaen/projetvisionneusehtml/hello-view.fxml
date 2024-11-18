@@ -48,7 +48,7 @@
                         <KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Quitter">
+                  <MenuItem onAction="#handleQuit" mnemonicParsing="false" text="Quitter">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
@@ -65,11 +65,11 @@
                         <KeyCodeCombination alt="UP" code="Y" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="copy" onAction="#handlecopy" mnemonicParsing="false" text="Copier">
+                  <MenuItem onAction="#handlecopy" mnemonicParsing="false" text="Copier">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-                  <MenuItem fx:id="cut" onAction="#handlecut" mnemonicParsing="false" text="Couper">
+                  <MenuItem onAction="#handlecut" mnemonicParsing="false" text="Couper">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>

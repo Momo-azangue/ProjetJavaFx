@@ -1,12 +1,20 @@
 package etu.ecole.ensicaen.projetvisionneusehtml;
 
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.util.Duration;
+import org.controlsfx.control.action.Action;
 
 import java.io.*;
 
@@ -25,18 +33,9 @@ public class EditorController {
     private MenuItem Enregistrer;
     @FXML
     private MenuItem Enregistrersous;
-    @FXML
-    private MenuItem undo;
-    @FXML
-    private MenuItem redo;
-    @FXML
-    private MenuItem copy;
+
     @FXML
     private MenuItem paste;
-    @FXML
-    private MenuItem cut;
-
-
     @FXML
     private Button Savebtn;
     @FXML
@@ -64,6 +63,15 @@ public class EditorController {
         Undobtn.setDisable(true);
         Redobtn.setDisable(true);
 
+        paste.setDisable(!isClipboardNotEmpty());
+
+        Timeline clipboard = new Timeline(new KeyFrame(Duration.seconds(0.5), event ->{
+            paste.setDisable(!isClipboardNotEmpty());
+        }));
+        clipboard.setCycleCount(Animation.INDEFINITE);
+        clipboard.play();
+
+
         WebEngine webEngine = webView.getEngine(); /* lier la première TextArea Statique à la Webview correspondante */
         textArea.textProperty().addListener((observable, oldValue, newValue) -> {
             webEngine.loadContent(newValue);
@@ -72,6 +80,7 @@ public class EditorController {
             CompteDesCarateres(textArea, caracteres,lignes);
             ControlButton();
         });
+        CloseTabConfirmation(tab);
 
         Tab addTab = new Tab("+"); //Créer l'onglet "Ajouter" (avec le symbole "+")
         addTab.setClosable(false); // cet onglet ne peut pas être fermé
@@ -84,6 +93,24 @@ public class EditorController {
                 tabPane.getTabs().add(tabPane.getTabs().size() - 1, newTabCreated);// Ajouter avant l'onglet "+"
                 tabPane.getSelectionModel().select(newTabCreated); //Sélectionner le nouvel onglet
 
+            }
+        });
+    }
+
+    private void CloseTabConfirmation(Tab tab) {
+        tab.setOnCloseRequest(event -> {
+            if (EncoursdeRedaction) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                        "Voulez vous enregistrer avant de fermer l'ongmet?",
+                        ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.YES) {
+                        handleSave();
+                    } else if (response == ButtonType.CANCEL) {
+                        event.consume();
+                    }
+                });
             }
         });
     }
@@ -136,14 +163,12 @@ public class EditorController {
 
         newTab.setContent(anchorPane);
 
+        CloseTabConfirmation(newTab);
+
         return newTab;
 
 
     }
-
-
-
-
 
 // fonction pour compter les lignes et les caractères
     private void CompteDesCarateres(TextArea textArea, Label caracteres, Label lignes){
@@ -200,7 +225,7 @@ public class EditorController {
         } else {
             handleSaveAs();  // Sauvegarder un nouvel onglet dynamique sans fichier
         }
-    }
+    } //il y'a un souci avec la fonction enregistré on la fait juste une fois
     @FXML
     private void handleSaveAs() {
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
@@ -263,8 +288,6 @@ public class EditorController {
                 while ((line = reader.readLine()) != null){
                     contentBuilder.append(line).append("\n");
                 }
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -272,6 +295,7 @@ public class EditorController {
             // Créer un nouvel onglet
             Tab newTab = new Tab(file.getName());
             newTab.setClosable(true);
+            CloseTabConfirmation(newTab);
 
             // Créer un AnchorPane pour contenir la TextArea et la WebView
             AnchorPane anchorPane = new AnchorPane();
@@ -295,10 +319,10 @@ public class EditorController {
             // Ajouter le TextArea et le WebView dans le SplitPane
             splitPane.getItems().addAll(textArea, webView);
             // Positionner le SplitPane dans l'AnchorPane comme dans le FXML
-            AnchorPane.setTopAnchor(splitPane, 3.0);
-            AnchorPane.setLeftAnchor(splitPane, 15.0);
-            AnchorPane.setRightAnchor(splitPane, 15.0);
-            AnchorPane.setBottomAnchor(splitPane, 23.0);
+            AnchorPane.setTopAnchor(splitPane, 0.0);
+            AnchorPane.setLeftAnchor(splitPane, 0.0);
+            AnchorPane.setRightAnchor(splitPane, 0.0);
+            AnchorPane.setBottomAnchor(splitPane, 0.0);
 
             // Ajouter le SplitPane dans l'AnchorPane
             anchorPane.getChildren().add(splitPane);
@@ -321,14 +345,21 @@ public class EditorController {
     private void handlecopy(){
         textArea.copy();
     }
+
     @FXML
     private void handlecut(){
-
         textArea.cut();
     }
+
     @FXML
-    private void handlepaste(){
-        textArea.paste();
+    private void handlepaste(ActionEvent event){
+        Clipboard clipboard = Clipboard.getSystemClipboard();
+        if(clipboard.hasString()){
+            String text = clipboard.getString();
+            textArea.appendText(text);
+        }
+
+
     }
 
     @FXML
@@ -341,8 +372,44 @@ public class EditorController {
         textArea.redo();
     }
 
+    @FXML
+    private void  handleQuit(){
+
+        if(EncoursdeRedaction){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Quitter");
+            alert.setHeaderText("vous avez des modifications non enregistrées");
+            alert.setContentText("Voulez-vous enregistrer avant de quitter ?");
 
 
+            ButtonType buttonSave = new ButtonType("Enregistrer");
+            ButtonType buttonDontSave = new ButtonType("Ne pas enregistrer");
+            ButtonType buttoncancel = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
 
+            alert.getButtonTypes().setAll(buttonSave, buttonDontSave, buttoncancel);
+
+
+            alert.showAndWait().ifPresent( response ->{
+
+                if(response == buttonSave){
+                    handleSave();
+                    System.exit(0);
+                }else if (response == buttonDontSave){
+                    System.exit(0);
+                }
+                    });
+
+
+        }else {
+            System.exit(0);
+        }
+
+    }
+
+
+    public boolean isClipboardNotEmpty(){
+        Clipboard clipboard= Clipboard.getSystemClipboard();
+        return clipboard.hasString();
+    }
 
 }
