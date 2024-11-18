@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ca8aaaee-c72a-4cfd-91a0-d34d6c9b5341" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/projetvisionneusehtml/EditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/projetvisionneusehtml/EditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/etu/ecole/ensicaen/projetvisionneusehtml/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/etu/ecole/ensicaen/projetvisionneusehtml/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/projetvisionneusehtml/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/projetvisionneusehtml/HelloApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +100,7 @@
       <workItem from="1731619047341" duration="2591000" />
       <workItem from="1731664779276" duration="2847000" />
       <workItem from="1731686340415" duration="1045000" />
-      <workItem from="1731793195257" duration="29222000" />
+      <workItem from="1731793195257" duration="31187000" />
     </task>
     <servers />
   </component>
